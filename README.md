@@ -20,7 +20,7 @@ GitHub: Utilized for version control and facilitating collaborative development.
 ``` Clone the repository from GitHub.
 bash
 Copy code
-git clone https://github.com/your-username/kikapu.git
+git clone https://github.com/reddeath1/Kikapu.git
 Navigate to the project directory.
 bash
 Copy code
