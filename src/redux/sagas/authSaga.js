@@ -194,7 +194,7 @@ function* authSaga({ type, payload }) {
       try {
         yield call(firebase.setAuthPersistence);
       } catch (e) {
-        console.log(e);
+        // console.log(e);
       }
       break;
     }
