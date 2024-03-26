@@ -7,8 +7,8 @@ import {
   SIGNOUT, SIGNUP
 } from '@/constants/constants';
 import { SIGNIN as ROUTE_SIGNIN } from '@/constants/routes';
-import defaultAvatar from '@/images/defaultAvatar.jpg';
-import defaultBanner from '@/images/defaultBanner.jpg';
+import defaultAvatar from '@/images/avatar.png';
+import defaultBanner from '@/images/banner.png';
 import { call, put } from 'redux-saga/effects';
 import { signInSuccess, signOutSuccess } from '@/redux/actions/authActions';
 import { clearBasket, setBasketItems } from '@/redux/actions/basketActions';
@@ -25,7 +25,7 @@ function* handleError(e) {
 
   switch (e.code) {
     case 'auth/network-request-failed':
-      yield put(setAuthStatus({ ...obj, message: 'Network error has occured. Please try again.' }));
+      yield put(setAuthStatus({ ...obj, message: 'Network error has occurred. Please try again.' }));
       break;
     case 'auth/email-already-in-use':
       yield put(setAuthStatus({ ...obj, message: 'Email is already in use. Please use another email' }));
