@@ -63,6 +63,7 @@ const UserNav = () => {
         />
       </div>
       <DownOutlined style={{ fontSize: '1.2rem', marginLeft: '1rem' }} />
+
       <div className="user-nav-sub">
         {profile.role !== 'ADMIN' && (
           <Link
