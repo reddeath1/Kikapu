@@ -25,7 +25,7 @@ const UserNav = () => {
         userNav.current.classList.remove('user-sub-open');
       }
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
   };
 
