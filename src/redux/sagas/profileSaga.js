@@ -52,7 +52,6 @@ function* profileSaga({ type, payload }) {
         yield call(history.push, ACCOUNT);
         yield call(displayActionMessage, 'Profile Updated Successfully!', 'success');
       } catch (e) {
-        console.log(e);
         yield put(setLoading(false));
         if (e.code === 'auth/wrong-password') {
           yield call(displayActionMessage, 'Wrong password, profile update failed :(', 'error');

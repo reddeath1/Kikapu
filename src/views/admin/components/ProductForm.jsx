@@ -14,18 +14,16 @@ import * as Yup from 'yup';
 
 // Default brand names that I used. You can use what you want
 const brandOptions = [
-  { value: 'Salt Maalat', label: 'Salt Maalat' },
-  { value: 'Betsin Maalat', label: 'Betsin Maalat' },
-  { value: 'Sexbomb', label: 'Sexbomb' },
-  { value: 'Black Kibal', label: 'Black Kibal' }
+  { value: 'Nyanya', label: 'Nyanya' },
+  { value: 'Kintenge', label: 'Kitenge' },
+  { value: 'Nyama', label: 'Nyama' },
+  { value: 'Mayai', label: 'Mayai' }
 ];
 
 const FormSchema = Yup.object().shape({
   name: Yup.string()
     .required('Product name is required.')
     .max(60, 'Product name must only be less than 60 characters.'),
-  brand: Yup.string()
-    .required('Brand name is required.'),
   price: Yup.number()
     .positive('Price is invalid.')
     .integer('Price should be an integer.')
@@ -39,9 +37,9 @@ const FormSchema = Yup.object().shape({
   keywords: Yup.array()
     .of(Yup.string())
     .min(1, 'Please enter at least 1 keyword for this product.'),
-  sizes: Yup.array()
-    .of(Yup.number())
-    .min(1, 'Please enter a size for this product.'),
+  // sizes: Yup.array()
+  //   .of(Yup.number())
+  //   .min(1, 'Please enter a size for this product.'),
   isFeatured: Yup.boolean(),
   isRecommended: Yup.boolean(),
   availableColors: Yup.array()
@@ -57,7 +55,7 @@ const ProductForm = ({ product, onSubmit, isLoading }) => {
     maxQuantity: product?.maxQuantity || 0,
     description: product?.description || '',
     keywords: product?.keywords || [],
-    sizes: product?.sizes || [],
+    // sizes: product?.sizes || [],
     isFeatured: product?.isFeatured || false,
     isRecommended: product?.isRecommended || false,
     availableColors: product?.availableColors || []
@@ -106,7 +104,7 @@ const ProductForm = ({ product, onSubmit, isLoading }) => {
                     name="name"
                     type="text"
                     label="* Product Name"
-                    placeholder="Gago"
+                    placeholder="Nyama"
                     style={{ textTransform: 'capitalize' }}
                     component={CustomInput}
                   />
@@ -168,19 +166,19 @@ const ProductForm = ({ product, onSubmit, isLoading }) => {
                     placeholder="Create/Select Keywords"
                     label="* Keywords"
                   />
-                </div>
-                &nbsp;
-                <div className="product-form-field">
-                  <CustomCreatableSelect
-                    defaultValue={values.keywords.map((key) => ({ value: key, label: key }))}
-                    name="sizes"
-                    iid="sizes"
-                    type="number"
-                    isMulti
-                    disabled={isLoading}
-                    placeholder="Create/Select Sizes"
-                    label="* Sizes (Millimeter)"
-                  />
+              {/*  </div>*/}
+              {/*  &nbsp;*/}
+              {/*  <div className="product-form-field">*/}
+              {/*    <CustomCreatableSelect*/}
+              {/*      defaultValue={values.keywords.map((key) => ({ value: key, label: key }))}*/}
+              {/*      name="sizes"*/}
+              {/*      iid="sizes"*/}
+              {/*      type="number"*/}
+              {/*      isMulti*/}
+              {/*      disabled={isLoading}*/}
+              {/*      placeholder="Create/Select Sizes"*/}
+              {/*      label="* Sizes (Millimeter)"*/}
+              {/*    />*/}
                 </div>
               </div>
               <div className="product-form-field">
@@ -322,7 +320,7 @@ ProductForm.propTypes = {
     description: PropType.string,
     keywords: PropType.arrayOf(PropType.string),
     imageCollection: PropType.arrayOf(PropType.object),
-    sizes: PropType.arrayOf(PropType.string),
+    // sizes: PropType.arrayOf(PropType.string),
     image: PropType.string,
     imageUrl: PropType.string,
     isFeatured: PropType.bool,

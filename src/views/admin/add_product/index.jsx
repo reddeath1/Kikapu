@@ -9,7 +9,7 @@ const ProductForm = lazy(() => import('../components/ProductForm'));
 
 const AddProduct = () => {
   useScrollTop();
-  useDocumentTitle('Add New Product | Salinaka');
+  useDocumentTitle('Add New Product | Kikapu');
   const isLoading = useSelector((state) => state.app.loading);
   const dispatch = useDispatch();
 
@@ -38,7 +38,6 @@ const AddProduct = () => {
             maxQuantity: 0,
             description: '',
             keywords: [],
-            sizes: [],
             image: '',
             isFeatured: false,
             isRecommended: false,

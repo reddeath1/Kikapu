@@ -1,10 +1,10 @@
 import { CLEAR_PROFILE, SET_PROFILE, UPDATE_PROFILE_SUCCESS } from '@/constants/constants';
 // import profile from 'static/profile.jpg';
 // import banner from 'static/banner.jpg';
-
+//
 // const initState = {
-//   fullname: 'Pedro Juan',
-//   email: 'juanpedro@gmail.com',
+//   fullname: 'Frank Galos',
+//   email: 'frankslayer1@gmail.com',
 //   address: '',
 //   mobile: {},
 //   avatar: profile,
