@@ -168,7 +168,7 @@ class Firebase {
 
     return new Promise((resolve, reject) => {
       (async () => {
-        if (lastRefKey) {
+        if (typeof lastRefKey != "boolean") {
           try {
             const query = this.db
               .collection("users")

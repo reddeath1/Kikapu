@@ -55,7 +55,7 @@ const Navigation = () => {
   ];
 
   if (store.user && store.user.role === 'ADMIN') {
-    // return null;
+    return null;
   } if (window.screen.width <= 800) {
     return (
       <MobileNavigation
@@ -67,7 +67,7 @@ const Navigation = () => {
     );
   }
   return (
-    <nav className="navigation" ref={navbar}>
+    <nav className="navigation nv" ref={navbar}>
       <div className="logo">
         <Link onClick={onClickLink} to="/"><img alt="Logo" src={logo} /></Link>
       </div>

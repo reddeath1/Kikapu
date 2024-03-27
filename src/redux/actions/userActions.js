@@ -21,9 +21,9 @@ export const getUsers = (lastRef) => ({
 });
 
 
-export const getUsersSuccess = (products) => ({
+export const getUsersSuccess = (users) => ({
   type: GET_USERS_SUCCESS,
-  payload: products
+  payload: users
 });
 
 // different from registerUser -- only inserted in admins' users array not in profile array

@@ -8,8 +8,8 @@
   padding-top: 3rem;
   position: absolute;
   top: 0;
+  z-index: 0;
   transform: translateY(0);
-  z-index: map-get($z-index, navigation);
   box-shadow: none;
   @include bezier-transition(transform, .3s, ease);
 
@@ -43,13 +43,18 @@
   }
 }
 
+.nv{
+  z-index: 1;
+}
+
 .navigation-admin {
   height: 6rem;
   background: $white;
   box-shadow: 0 5px 10px rgba(0, 0, 0, .05);
-  padding: .5rem $l-size;
+  padding: .6rem $l-size;
   display: flex;
   justify-content: space-between;
+  z-index: 100000;
 }
 
 .navigation-menu {

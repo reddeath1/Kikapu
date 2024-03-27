@@ -85,14 +85,11 @@ h6 {
 
 .content-admin {
   width: 100%;
-  z-index: 1000;
   top: 0;
   left: 0;
-  position: relative;
   padding-top: $xxl-size;
-  overflow: hidden;
   display: flex;
-
+  z-index: -1;
 }
 
 .content-admin-wrapper {

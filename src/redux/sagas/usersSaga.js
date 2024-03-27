@@ -9,12 +9,6 @@ import {
 import { setLoading, setRequestStatus } from '@/redux/actions/miscActions';
 import { history } from '@/routers/AppRouter';
 import firebase from '@/services/firebase';
-import {
-  addProductSuccess,
-  clearSearchState, editProductSuccess, getProductsSuccess,
-  removeProductSuccess,
-  searchProductSuccess
-} from '../actions/productActions';
 import {getUsersSuccess} from "@/redux/actions/userActions";
 
 function* initRequest() {
@@ -42,13 +36,14 @@ function* usersSaga({ type, payload }) {
         const state = yield select();
         const result = yield call(firebase.getUsers, payload);
 
-        if (result.products.length === 0) {
+        // console.log(result);
+        if (result.users.length === 0) {
           handleError('No user found.');
         } else {
           yield put(getUsersSuccess({
             users: result.users,
-            lastKey: result.lastKey ? result.lastKey : state.users.lastRefKey,
-            total: result.total ? result.total : state.users.total
+            lastKey: state.users.lastRefKey,
+            total: state.users.total
           }));
           yield put(setRequestStatus(''));
         }

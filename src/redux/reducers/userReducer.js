@@ -1,16 +1,5 @@
 import { ADD_USER, DELETE_USER, EDIT_USER,GET_USERS } from '@/constants/constants';
 
-// const initState = [
-//   {
-//     firstname: 'Gago',
-//     lastname: 'Ka',
-//     email: 'gagoka@mail.com',
-//     password: 'gagooo',
-//     avatar: '',
-//     banner: '',
-//     dateJoined: 0
-//   }
-// ];
 
 const initState = {
   lastRefKey: null,
@@ -42,7 +31,7 @@ export default (state = {
       ...state,
       lastRefKey: action.payload != null ?? action.payload.lastKey,
       total: action.payload != null ?? action.payload.total,
-      items: [...state.items, ...action.payload.users]
+      items: typeof action.payload.users != 'undefined' ? [...state.items, ...action.payload.users] : []
     };
     case DELETE_USER:
       return state.filter((user) => user.id !== action.payload);

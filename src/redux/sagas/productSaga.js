@@ -94,7 +94,7 @@ function* productSaga({ type, payload }) {
           id: key,
           ...product
         }));
-        yield handleAction(ADMIN_PRODUCTS, 'Item succesfully added', 'success');
+        yield handleAction(ADMIN_PRODUCTS, 'Item successfully added', 'success');
         yield put(setLoading(false));
       } catch (e) {
         yield handleError(e);

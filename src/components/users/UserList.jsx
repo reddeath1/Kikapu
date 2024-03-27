@@ -3,8 +3,10 @@ import { Boundary, MessageDisplay } from '@/components/common';
 import PropType from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setLoading } from '@/redux/actions/miscActions';
-import {getUsers} from "@/redux/actions/userActions";
+import {setLoading, setRequestStatus} from '@/redux/actions/miscActions';
+import {getUsers, getUsersSuccess} from "@/redux/actions/userActions";
+import {GET_PRODUCTS_SUCCESS} from "@/constants/constants";
+import firebase from "@/services/firebase";
 
 const UserList = (props) => {
   const {
@@ -13,13 +15,20 @@ const UserList = (props) => {
   const [isFetching, setFetching] = useState(false);
   const dispatch = useDispatch();
 
+  const getUsersList = async () => {
+
+    return firebase.getUsers(users.lastRefKey).then((data)=>{
+      users.users = data;
+      return data;
+    })
+  }
   const fetchUsers = () => {
     setFetching(true);
+    getUsersList();
     dispatch(getUsers(users.lastRefKey));
   };
 
   useEffect(() => {
-    console.log(users);
     if (typeof users.items != 'undefined' && users.items.length === 0 || !users.lastRefKey) {
       fetchUsers();
     }
@@ -34,9 +43,10 @@ const UserList = (props) => {
 
   if (filteredUsers.length === 0 && !isLoading) {
     return (
-      <MessageDisplay message={requestStatus?.message || 'No products found.'} />
+      <MessageDisplay message={requestStatus?.message || 'This feature is still in the making.'} />
     );
-  } if (filteredUser.length === 0 && requestStatus) {
+  }
+  if (filteredUsers.length === 0 && requestStatus) {
     return (
       <MessageDisplay
         message={requestStatus?.message || 'Something went wrong :('}
@@ -47,7 +57,6 @@ const UserList = (props) => {
   }
   return (
     <Boundary>
-      {children}
       {/* Show 'Show More' button if products length is less than total products */}
       {users.items.length < users.total && (
         <div className="d-flex-center padding-l">

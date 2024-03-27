@@ -2,12 +2,13 @@
 import { Boundary } from '@/components/common';
 import { AppliedFilters, ProductList } from '@/components/product';
 import { useDocumentTitle, useScrollTop } from '@/hooks';
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { selectFilter } from '@/selectors/selector';
 import UsersTable from './UsersTable';
-import UserList from "@/components/users/UserList";
+import {UserList} from "@/components/users";
+import firebase from "@/services/firebase";
 
 const AdminUsers = () => {
   useDocumentTitle('User List | Kikapu Admin');
@@ -24,7 +25,6 @@ const AdminUsers = () => {
     <Boundary>
       <div className="product-admin-items">
         <UserList {...store}>
-          <AppliedFilters filter={store.filter} />
           <UsersTable filteredUsers={store.filteredUsers} />
         </UserList>
       </div>
