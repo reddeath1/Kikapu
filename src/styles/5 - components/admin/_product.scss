@@ -2,6 +2,7 @@
   position: relative;
   padding: $s-size;
   border: 1px solid transparent;
+  z-index: 1000;
   
   &:nth-child(even) {
     background: $white;

@@ -9,22 +9,22 @@ import { selectFilter } from '@/selectors/selector';
 import { ProductsNavbar } from '../components';
 import ProductsTable from '../components/ProductsTable';
 
-const Products = () => {
-  useDocumentTitle('Product List | Kikapu Admin');
+const AdminUsers = () => {
+  useDocumentTitle('User List | Kikapu Admin');
   useScrollTop();
 
   const store = useSelector((state) => ({
-    filteredProducts: selectFilter(state.products.items, state.filter),
+    filteredUsers: selectFilter(state.users.items, state.filter),
     requestStatus: state.app.requestStatus,
     isLoading: state.app.loading,
-    products: state.products
+    users: state.users
   }));
 
   return (
     <Boundary>
       <ProductsNavbar
-        productsCount={store.products.items.length}
-        totalProductsCount={store.products.total}
+        productsCount={store.users.items.length}
+        totalProductsCount={store.users.total}
       />
       <div className="product-admin-items">
         <ProductList {...store}>
@@ -36,4 +36,4 @@ const Products = () => {
   );
 };
 
-export default withRouter(Products);
+export default withRouter(AdminUsers);

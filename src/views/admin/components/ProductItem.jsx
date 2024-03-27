@@ -33,8 +33,8 @@ const ProductItem = ({ product }) => {
 
   return (
     <SkeletonTheme
-      color="#e1e1e1"
-      highlightColor="#f2f2f2"
+      color="#eee"
+      highlightColor="#f00"
     >
       <div
         className={`item item-products ${!product.id && 'item-loading'}`}
@@ -52,9 +52,6 @@ const ProductItem = ({ product }) => {
           </div>
           <div className="grid-col">
             <span className="text-overflow-ellipsis">{product.name || <Skeleton width={50} />}</span>
-          </div>
-          <div className="grid-col">
-            <span>{product.brand || <Skeleton width={50} />}</span>
           </div>
           <div className="grid-col">
             <span>{product.price ? displayMoney(product.price) : <Skeleton width={30} />}</span>
@@ -114,19 +111,15 @@ ProductItem.propTypes = {
   product: PropType.shape({
     id: PropType.string,
     name: PropType.string,
-    brand: PropType.string,
-    price: PropType.number,
     maxQuantity: PropType.number,
     description: PropType.string,
     keywords: PropType.arrayOf(PropType.string),
     imageCollection: PropType.arrayOf(PropType.object),
-    sizes: PropType.arrayOf(PropType.string),
     image: PropType.string,
     imageUrl: PropType.string,
     isFeatured: PropType.bool,
     isRecommended: PropType.bool,
-    dateAdded: PropType.number,
-    availableColors: PropType.arrayOf(PropType.string)
+    dateAdded: PropType.number
   }).isRequired
 };
 

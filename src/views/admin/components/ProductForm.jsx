@@ -37,9 +37,6 @@ const FormSchema = Yup.object().shape({
   keywords: Yup.array()
     .of(Yup.string())
     .min(1, 'Please enter at least 1 keyword for this product.'),
-  // sizes: Yup.array()
-  //   .of(Yup.number())
-  //   .min(1, 'Please enter a size for this product.'),
   isFeatured: Yup.boolean(),
   isRecommended: Yup.boolean(),
   availableColors: Yup.array()
@@ -50,12 +47,10 @@ const FormSchema = Yup.object().shape({
 const ProductForm = ({ product, onSubmit, isLoading }) => {
   const initFormikValues = {
     name: product?.name || '',
-    brand: product?.brand || '',
     price: product?.price || 0,
     maxQuantity: product?.maxQuantity || 0,
     description: product?.description || '',
     keywords: product?.keywords || [],
-    // sizes: product?.sizes || [],
     isFeatured: product?.isFeatured || false,
     isRecommended: product?.isRecommended || false,
     availableColors: product?.availableColors || []
@@ -109,18 +104,6 @@ const ProductForm = ({ product, onSubmit, isLoading }) => {
                     component={CustomInput}
                   />
                 </div>
-                &nbsp;
-                <div className="product-form-field">
-                  <CustomCreatableSelect
-                    defaultValue={{ label: values.brand, value: values.brand }}
-                    name="brand"
-                    iid="brand"
-                    options={brandOptions}
-                    disabled={isLoading}
-                    placeholder="Select/Create Brand"
-                    label="* Brand"
-                  />
-                </div>
               </div>
               <div className="product-form-field">
                 <Field
@@ -166,28 +149,10 @@ const ProductForm = ({ product, onSubmit, isLoading }) => {
                     placeholder="Create/Select Keywords"
                     label="* Keywords"
                   />
-              {/*  </div>*/}
-              {/*  &nbsp;*/}
-              {/*  <div className="product-form-field">*/}
-              {/*    <CustomCreatableSelect*/}
-              {/*      defaultValue={values.keywords.map((key) => ({ value: key, label: key }))}*/}
-              {/*      name="sizes"*/}
-              {/*      iid="sizes"*/}
-              {/*      type="number"*/}
-              {/*      isMulti*/}
-              {/*      disabled={isLoading}*/}
-              {/*      placeholder="Create/Select Sizes"*/}
-              {/*      label="* Sizes (Millimeter)"*/}
-              {/*    />*/}
+
                 </div>
               </div>
-              <div className="product-form-field">
-                <FieldArray
-                  name="availableColors"
-                  disabled={isLoading}
-                  component={CustomColorInput}
-                />
-              </div>
+
               <div className="product-form-field">
                 <span className="d-block padding-s">Image Collection</span>
                 {!isFileLoading && (
@@ -314,13 +279,11 @@ const ProductForm = ({ product, onSubmit, isLoading }) => {
 ProductForm.propTypes = {
   product: PropType.shape({
     name: PropType.string,
-    brand: PropType.string,
     price: PropType.number,
     maxQuantity: PropType.number,
     description: PropType.string,
     keywords: PropType.arrayOf(PropType.string),
     imageCollection: PropType.arrayOf(PropType.object),
-    // sizes: PropType.arrayOf(PropType.string),
     image: PropType.string,
     imageUrl: PropType.string,
     isFeatured: PropType.bool,
