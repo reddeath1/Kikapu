@@ -64,8 +64,11 @@ const Payment = ({ shipping, payment, subtotal }) => {
       >
         {() => (
           <Form className="checkout-step-3">
-            <CreditPayment />
-            <PayPalPayment />
+            {/*<CreditPayment />*/}
+            {/*<PayPalPayment />*/}
+            <div className="flex-justify-center">
+              <h1 className="text-center" style={{color: "green"}}>This Feature not ready yet (-_-)</h1>
+            </div>
             <Total
               isInternational={shipping.isInternational}
               subtotal={subtotal}
