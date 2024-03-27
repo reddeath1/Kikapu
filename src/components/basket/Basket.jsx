@@ -36,7 +36,8 @@ const Basket = () => {
   const onCheckOut = () => {
     if ((basket.length !== 0 && user)) {
       document.body.classList.remove('is-basket-open');
-      history.push(CHECKOUT_STEP_1);
+      alert("We're currently fine tuning this feature and will be available soon!")
+      // history.push(CHECKOUT_STEP_1);
     } else {
       onOpenModal();
     }
