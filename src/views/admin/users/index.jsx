@@ -6,8 +6,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { selectFilter } from '@/selectors/selector';
-import { ProductsNavbar } from '../components';
-import ProductsTable from '../components/ProductsTable';
+import UsersTable from './UsersTable';
+import UserList from "@/components/users/UserList";
 
 const AdminUsers = () => {
   useDocumentTitle('User List | Kikapu Admin');
@@ -22,15 +22,11 @@ const AdminUsers = () => {
 
   return (
     <Boundary>
-      <ProductsNavbar
-        productsCount={store.users.items.length}
-        totalProductsCount={store.users.total}
-      />
       <div className="product-admin-items">
-        <ProductList {...store}>
+        <UserList {...store}>
           <AppliedFilters filter={store.filter} />
-          <ProductsTable filteredProducts={store.filteredProducts} />
-        </ProductList>
+          <UsersTable filteredUsers={store.filteredUsers} />
+        </UserList>
       </div>
     </Boundary>
   );

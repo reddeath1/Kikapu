@@ -1,7 +1,7 @@
 import {
   ADD_USER,
 
-  DELETE_USER, EDIT_USER, GET_USER, REGISTER_USER
+  DELETE_USER, EDIT_USER, GET_PRODUCTS_SUCCESS, GET_USER, GET_USERS, GET_USERS_SUCCESS, REGISTER_USER
 } from '@/constants/constants';
 
 // insert in profile array
@@ -13,6 +13,17 @@ export const registerUser = (user) => ({
 export const getUser = (uid) => ({
   type: GET_USER,
   payload: uid
+});
+
+export const getUsers = (lastRef) => ({
+  type: GET_USERS,
+  payload: lastRef
+});
+
+
+export const getUsersSuccess = (products) => ({
+  type: GET_USERS_SUCCESS,
+  payload: products
 });
 
 // different from registerUser -- only inserted in admins' users array not in profile array

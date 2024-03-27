@@ -163,6 +163,65 @@ class Firebase {
       })();
     });
   };
+  getUsers = (lastRefKey) => {
+    let didTimeout = false;
+
+    return new Promise((resolve, reject) => {
+      (async () => {
+        if (lastRefKey) {
+          try {
+            const query = this.db
+              .collection("users")
+              .orderBy(app.firestore.FieldPath.documentId())
+              .startAfter(lastRefKey)
+              .limit(12);
+
+            const snapshot = await query.get();
+            const users = [];
+            snapshot.forEach((doc) =>
+              users.push({ id: doc.id, ...doc.data() })
+            );
+            const lastKey = snapshot.docs[snapshot.docs.length - 1];
+
+            resolve({ users, lastKey });
+          } catch (e) {
+            reject(e?.message || ":( Failed to fetch users.");
+          }
+        } else {
+          const timeout = setTimeout(() => {
+            didTimeout = true;
+            reject(new Error("Request timeout, please try again"));
+          }, 15000);
+
+          try {
+            const totalQuery = await this.db.collection("users").get();
+            const total = totalQuery.docs.length;
+            const query = this.db
+              .collection("users")
+              .orderBy(app.firestore.FieldPath.documentId())
+              .limit(12);
+            const snapshot = await query.get();
+
+            clearTimeout(timeout);
+            if (!didTimeout) {
+              const users = [];
+              snapshot.forEach((doc) =>
+                users.push({ id: doc.id, ...doc.data() })
+              );
+              const lastKey = snapshot.docs[snapshot.docs.length - 1];
+
+              resolve({ users, lastKey, total });
+            }
+          } catch (e) {
+            if (didTimeout) return;
+
+            console.log(e);
+            reject(e?.message || ":( Failed to fetch products.");
+          }
+        }
+      })();
+    });
+  };
 
   searchProducts = (searchKey) => {
     let didTimeout = false;
