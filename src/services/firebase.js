@@ -155,6 +155,8 @@ class Firebase {
             }
           } catch (e) {
             if (didTimeout) return;
+
+            console.log(e);
             reject(e?.message || ":( Failed to fetch products.");
           }
         }

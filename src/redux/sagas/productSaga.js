@@ -38,6 +38,7 @@ function* handleAction(location, message, status) {
 }
 
 function* productSaga({ type, payload }) {
+
   switch (type) {
     case GET_PRODUCTS:
       try {
